@@ -1,0 +1,80 @@
+body {
+  background-color: #534c2d;
+
+  color: #f0e6d2;
+  font-family: 'Cormorant Garamond', serif;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+h1 {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 2.5em;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #e3b04b;
+  text-shadow: 2px 2px #000;
+}
+
+.poem {
+  display: inline-block;
+  color: #e3b04b;
+  font-style: italic;
+  font-size: 1.3em;
+  background-color: #3b3b3b;
+  border: 1px solid #764c24;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.7);
+  max-width: 400px;
+  margin: 30px auto 40px auto;
+  line-height: 200%;
+  text-align: center;
+}
+
+.poem::before {
+  content: '\201c';
+  font-size: 3em;
+  vertical-align: middle;
+  color: #e3b04b;
+}
+
+.poem::after {
+  content: '\201d';
+  font-size: 3em;
+  vertical-align: middle;
+  color: #e3b04b;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  align-content: space-evenly;
+  justify-content: left;
+  margin-left: 200px;
+  margin-right: 200px;
+  max-width: 1000px;
+}
+
+app-checkbox-group {
+  display: inline-block;
+  padding: 15px;
+  border: 2px solid #764c24;
+  border-radius: 8px;
+  background-color: #444;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+  max-width: 550px;
+}
+
+.poem-logo-container {
+  display: flex;
+  align-items: center;
+  align-content: space-evenly;
+  justify-content: center;
+  margin-left: 200px;
+  margin-right: 200px;
+  max-width: 1000px;
+}

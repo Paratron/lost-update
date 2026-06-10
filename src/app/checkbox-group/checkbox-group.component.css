@@ -1,0 +1,108 @@
+.checkbox-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  background-color: #3b3b3b;
+  border: 1px solid #764c24;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.7);
+}
+
+.error-label {
+  background-color: #d32f2f;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1em;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+  border: 2px solid #b71c1c;
+  text-align: center;
+  will-change: opacity, transform;
+}
+
+.checkbox-label {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  font-family: 'Cormorant Garamond', serif;
+  color: #e3b04b;
+  font-size: 1.3em;
+}
+
+.checkbox-label input[type='checkbox'] {
+  margin-right: 10px;
+  width: 25px;
+  height: 25px;
+  box-shadow: 3px 3px 7px rgba(118, 76, 36, 0.7);
+}
+
+.quote-checkbox {
+  box-shadow: 3px 3px 7px rgba(118, 76, 36, 0.7);
+  appearance: none; /* Removes the default checkbox styling */
+  width: 20px;
+  height: 20px;
+  border: 2px solid #000; /* Custom border */
+  border-radius: 4px; /* Optional: to make the checkbox look a bit rounded */
+  background-color: #f0e68c;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+}
+
+.quote-checkbox:checked {
+  background-color: #8fbc8f; /* Custom background color when checked */
+}
+
+.quote-checkbox:checked::after {
+  content: '✔'; /* Checkmark symbol */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #000; /* Color of the checkmark */
+  font-size: 16px;
+}
+
+label {
+  margin-right: 15px;
+  font-family: 'Cormorant Garamond', serif;
+  color: #e3b04b;
+}
+
+button {
+  background-color: #e3b04b;
+  color: #2c2c2c;
+  border: none;
+  padding: 10px 20px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #d39c3b;
+}
+
+h2 {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.3em;
+  text-align: left;
+  margin-bottom: 30px;
+  color: #e3b04b;
+  text-shadow: 1px 1px #000;
+}
+
+app-checkbox-group {
+  display: inline-block;
+  padding: 15px;
+  border: 2px solid #764c24;
+  border-radius: 8px;
+  background-color: #444;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+}

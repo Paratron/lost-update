@@ -1,0 +1,180 @@
+{
+  'openapi': '3.0.0',
+  'info':
+    {
+      'title': 'Checkbox State API',
+      'version': '1.0.0',
+      'description': 'API for managing the state of checkboxes per user with optimistic concurrency control.',
+    },
+  'servers': [{ 'url': 'http://localhost:3000', 'description': 'Local server' }],
+  'paths':
+    {
+      '/api/{userId}/checkbox-state':
+        {
+          'get':
+            {
+              'summary': 'Retrieve the current checkbox state for a user',
+              'parameters':
+                [
+                  {
+                    'name': 'userId',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'string' },
+                    'description': 'The ID of the user',
+                  },
+                ],
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Successful response with the current checkbox state',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  'type': 'object',
+                                  'properties':
+                                    {
+                                      'version':
+                                        {
+                                          'type': 'integer',
+                                          'description': 'The current version of the checkbox state',
+                                        },
+                                      'state':
+                                        {
+                                          'type': 'object',
+                                          'description': 'The current state of the checkboxes',
+                                        },
+                                    },
+                                  'required': ['version', 'state'],
+                                },
+                            },
+                        },
+                    },
+                  '404':
+                    {
+                      'description': 'No state found for the given user ID',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  'type': 'object',
+                                  'properties':
+                                    {
+                                      'message':
+                                        {
+                                          'type': 'string',
+                                          'description': 'A message indicating that no state was found for the user ID',
+                                        },
+                                    },
+                                  'required': ['message'],
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+          'post':
+            {
+              'summary': 'Update the checkbox state for a user',
+              'parameters':
+                [
+                  {
+                    'name': 'userId',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'string' },
+                    'description': 'The ID of the user',
+                  },
+                ],
+              'requestBody':
+                {
+                  'required': true,
+                  'content':
+                    {
+                      'application/json':
+                        {
+                          'schema':
+                            {
+                              'type': 'object',
+                              'properties':
+                                {
+                                  'version':
+                                    {
+                                      'type': 'integer',
+                                      'description': 'The version of the checkbox state to be updated',
+                                    },
+                                  'state':
+                                    {
+                                      'type': 'object',
+                                      'description': 'The new state of the checkboxes',
+                                    },
+                                },
+                              'required': ['version', 'state'],
+                            },
+                        },
+                    },
+                },
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'Successful update of the checkbox state',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  'type': 'object',
+                                  'properties':
+                                    {
+                                      'message':
+                                        {
+                                          'type': 'string',
+                                          'description': 'A message indicating the update was successful',
+                                        },
+                                      'delayed':
+                                        {
+                                          'type': 'boolean',
+                                          'description': 'Indicates if the request was delayed',
+                                        },
+                                    },
+                                  'required': ['message', 'delayed'],
+                                },
+                            },
+                        },
+                    },
+                  '409':
+                    {
+                      'description': 'Conflict: Version mismatch',
+                      'content':
+                        {
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  'type': 'object',
+                                  'properties':
+                                    {
+                                      'message':
+                                        {
+                                          'type': 'string',
+                                          'description': 'A message indicating the conflict',
+                                        },
+                                    },
+                                  'required': ['message'],
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+    },
+}
