@@ -7,6 +7,13 @@ const port = 3000;
 let checkboxStates = new Map();
 let requestCounterState = 0; // Counter to keep track of request numbers
 
+const initialCheckboxState = {
+  checkbox1: false,
+  checkbox2: false,
+  checkbox3: false,
+  checkbox4: false,
+};
+
 // Middleware to parse JSON bodies and enable CORS
 app.use(express.json());
 app.use(cors());
@@ -69,9 +76,10 @@ app.get('/api/:userId/checkbox-state', (req, res) => {
   if (!userId) {
     return res.status(400).json({ message: 'User ID is required' });
   }
-  const state = checkboxStates.get(userId);
+  let state = checkboxStates.get(userId);
   if (state === undefined) {
-    return res.status(404).json({ message: 'No state found for the given user ID' });
+    state = { version: 0, state: { ...initialCheckboxState } };
+    checkboxStates.set(userId, state);
   }
   res.status(200).json(state.state);
 });

@@ -1,0 +1,15 @@
+.error-label {
+  box-sizing: border-box;
+  width: 100%;
+  background-color: #d32f2f;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1em;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+  border: 2px solid #b71c1c;
+  text-align: center;
+  will-change: opacity, transform;
+}

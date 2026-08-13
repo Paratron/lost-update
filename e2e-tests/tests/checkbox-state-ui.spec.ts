@@ -49,4 +49,29 @@ test.describe.serial('UI Tests', () => {
       expect(await checkboxStateUi.getErrorStatusText()).toBe(undefined);
     });
   });
+
+  test('Display save errors above the checkbox group', async ({ page, checkboxStateUi }) => {
+    await page.route('**/api/*/checkbox-state', async route => {
+      if (route.request().method() === 'POST') {
+        await route.fulfill({ status: 500 });
+        return;
+      }
+
+      await route.continue();
+    });
+
+    await checkboxStateUi.toggleCheckbox('To Be or Not to Be');
+
+    const errorLabel = page.locator('.error-label');
+    await expect(errorLabel).toBeVisible();
+
+    const errorBox = await errorLabel.boundingBox();
+    const checkboxGroupBox = await page.locator('app-checkbox-group').boundingBox();
+
+    expect(errorBox).not.toBeNull();
+    expect(checkboxGroupBox).not.toBeNull();
+    expect(errorBox!.y + errorBox!.height).toBeLessThanOrEqual(checkboxGroupBox!.y);
+    expect(errorBox!.x).toBeCloseTo(checkboxGroupBox!.x, 0);
+    expect(errorBox!.width).toBeCloseTo(checkboxGroupBox!.width, 0);
+  });
 });

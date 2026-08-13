@@ -48,12 +48,12 @@ h1 {
 
 .content {
   display: flex;
-  align-items: center;
-  align-content: space-evenly;
-  justify-content: left;
-  margin-left: 200px;
-  margin-right: 200px;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
   max-width: 1000px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 app-checkbox-group {

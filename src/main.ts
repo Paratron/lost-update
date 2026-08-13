@@ -1,7 +1,16 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { provideHttpClient } from '@angular/common/http';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideRouter, Routes } from '@angular/router';
 
-import { AppModule } from './app/app.module';
+import { AppComponent } from './app/app.component';
+import { CheckboxGroupComponent } from './app/checkbox-group/checkbox-group.component';
 
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+const routes: Routes = [
+  { path: '', redirectTo: '/checkboxes/defaultUserId', pathMatch: 'full' },
+  { path: 'checkboxes/:userId', component: CheckboxGroupComponent },
+];
+
+bootstrapApplication(AppComponent, {
+  providers: [provideRouter(routes), provideHttpClient(), provideAnimations()],
+}).catch(err => console.error(err));

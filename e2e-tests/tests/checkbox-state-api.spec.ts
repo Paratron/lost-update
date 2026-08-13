@@ -83,8 +83,14 @@ test.describe.serial('Checkbox State API', () => {
     expect(responses.some(response => response.status() === 409)).toBeTruthy();
   });
 
-  test('GET for unknown user should return 404', async ({ request }) => {
+  test('GET for a new user should initialize and return the default state', async ({ request }) => {
     const response = await request.get(`/api/unknown-user/checkbox-state`);
-    expect(response.status()).toBe(404);
+    expect(response.status()).toBe(200);
+    expect(await response.json()).toEqual({
+      checkbox1: false,
+      checkbox2: false,
+      checkbox3: false,
+      checkbox4: false,
+    });
   });
 });

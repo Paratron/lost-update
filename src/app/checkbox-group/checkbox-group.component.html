@@ -2,18 +2,17 @@
   <h2>Choose Your Favorite Shakespeare Quotes</h2>
   <h3>Reload and verify that your selections are saved (also across browsers or devices)</h3>
 
-  @if (errorMessage) {
-    <div class="error-label" [@fadeInOut]>
-      {{ errorMessage }}
-    </div>
-  }
-
-  <form [formGroup]="checkboxForm">
-    <div class="checkbox-container">
-      <label *ngFor="let checkbox of checkboxes" class="checkbox-label">
-        <input type="checkbox" [formControlName]="checkbox.name" class="quote-checkbox" />
+  <div class="checkbox-container">
+    @for (checkbox of checkboxes; track checkbox.name) {
+      <label class="checkbox-label">
+        <input
+          type="checkbox"
+          class="quote-checkbox"
+          [checked]="checkboxState()[checkbox.name]"
+          (change)="toggle(checkbox.name)"
+        />
         {{ checkbox.label }}
       </label>
-    </div>
-  </form>
+    }
+  </div>
 </div>

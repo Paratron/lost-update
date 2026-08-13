@@ -32,7 +32,7 @@ Natürlich würden wir in der Realität das API-Design möglicherweise überarbe
 
 ## Los geht's
 
-**Node.js Version:** Dieses Projekt verwendet Angular 20 und benötigt eine aktuelle Node LTS Version (20 oder 22).
+**Node.js Version:** Dieses Projekt verwendet Angular 21 und benötigt Node.js 20.19+, 22.12+ oder 24+.
 
 ### Node.js Version überprüfen und installieren
 
@@ -41,8 +41,8 @@ Natürlich würden wir in der Realität das API-Design möglicherweise überarbe
 node --version
 
 # Mit nvm die richtige Version installieren (empfohlen):
-nvm install 20  # oder 22
-nvm use 20      # oder 22
+nvm install 20.19  # oder 22.12 / 24
+nvm use 20.19      # oder 22.12 / 24
 ```
 
 ### Dependencies installieren

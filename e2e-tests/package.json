@@ -2,6 +2,9 @@
   "name": "e2e-tests",
   "version": "1.0.0",
   "private": true,
+  "devDependencies": {
+    "@playwright/test": "^1.62.1"
+  },
   "scripts": {
     "test:ui": "playwright test tests/checkbox-state-ui.spec.ts --repeat-each 3",
     "test:api": "playwright test tests/checkbox-state-api.spec.ts --repeat-each 3"

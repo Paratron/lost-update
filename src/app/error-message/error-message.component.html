@@ -1,0 +1,5 @@
+@if (errorReporting.message()) {
+  <div class="error-label" role="alert" [@fadeInOut]>
+    {{ errorReporting.message() }}
+  </div>
+}

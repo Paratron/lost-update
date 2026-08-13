@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CheckboxState } from './checkbox-state.model';
 
@@ -7,22 +7,17 @@ import { CheckboxState } from './checkbox-state.model';
   providedIn: 'root',
 })
 export class CheckboxService {
-  private apiUrl = '';
+  private readonly http = inject(HttpClient);
 
-  constructor(private http: HttpClient) {}
-
-  // Use CheckboxState interface for the checkbox state
-  sendState(state: CheckboxState): Observable<any> {
-    console.log('Sending state to API:', state);
-    return this.http.post(this.apiUrl, state);
+  sendState(userId: string, state: CheckboxState): Observable<unknown> {
+    return this.http.post(this.url(userId), state);
   }
 
-  // Retrieve the current checkbox state from the backend
-  getState(): Observable<CheckboxState> {
-    return this.http.get<CheckboxState>(this.apiUrl);
+  getState(userId: string): Observable<CheckboxState> {
+    return this.http.get<CheckboxState>(this.url(userId));
   }
 
-  setUserId(userId: string) {
-    this.apiUrl = `http://localhost:3000/api/${userId}/checkbox-state`;
+  private url(userId: string): string {
+    return `http://localhost:3000/api/${userId}/checkbox-state`;
   }
 }
